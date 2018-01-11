@@ -2,6 +2,7 @@
   <div>
     <input type="text" v-model='componentName'>
     <button @click='add'>click me to add a component</button>
+    <show-select selectWidth="1000" :subject="selectData"></show-select>
   </div>
 </template>
 
@@ -12,16 +13,16 @@
         data: function() {
             return {
                 allComponents: [],
-                componentName: ''
+                componentName: '',
+                selectData:[{value:1,text:"ding"},{value:2,text:"liang"}]
             }
         },
         components: {
                 // 注册所有组件
-                selectM
+                "showSelect": selectM
         },
         methods: {
             add: function() {
-              console.log(this.componentName);
                 this.allComponents.push(this.componentName)
                 // 重置输入框
                 this.componentName = ''
@@ -30,10 +31,7 @@
                 // tag 
                 // data
                 // children 具体看文档吧
-                console.log(this.componentName);
-                console.log(this.allComponents);
-
-                return h('div',this.allComponents.map(function(componentName) {
+                return h('div',{},this.allComponents.map(function(componentName) {
                     return h(componentName)
                 }))
             }

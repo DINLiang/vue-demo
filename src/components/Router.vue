@@ -28,8 +28,8 @@ export default {
 					islink: ''
 				},
 				{
-					path: '/scroll',
-					name: 'scroll'
+					path: '/select',
+					name: 'select'
 				}
 			]
 		}
