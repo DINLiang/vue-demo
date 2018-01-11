@@ -30,6 +30,10 @@ export default {
 				{
 					path: '/select',
 					name: 'select'
+				},
+				{
+					path: '/grid',
+					name: 'grid'
 				}
 			]
 		}

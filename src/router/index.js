@@ -4,6 +4,7 @@ import Code from '../components/Code'
 import Slide from '../components/Slide'
 import Jump from '../components/Jump'
 import Select from '../components/select'
+import Grid from '../components/grid'
 
 Vue.use(Router);
 Vue.config.productionTip = false;
@@ -29,6 +30,11 @@ export default new Router({
 			path: '/select',
 			name: 'select',
 			component: Select
+		},
+		{
+			path: '/grid',
+			name: 'grid',
+			component: Grid
 		}
 
 	]
