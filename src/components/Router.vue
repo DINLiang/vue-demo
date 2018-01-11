@@ -23,8 +23,8 @@ export default {
 					islink: ''
 				},
 				{
-					path: '/lazyload',
-					name: 'lazyload',
+					path: '/jump',
+					name: 'jump',
 					islink: ''
 				},
 				{
