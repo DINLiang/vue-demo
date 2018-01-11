@@ -2,7 +2,7 @@
 	<div>
 		<el-row>
 			<el-button type="primary" @click="add()">增加行</el-button>
-			<el-button type="primary" @click="add(2)">指定行增加</el-button>
+			<el-button type="primary" @click="add(2,keys)">指定行增加</el-button>
 			<el-button type="primary" @click="deleteFun">删除行</el-button>
 			<el-button type="primary" @click="deleteFun(2)">删除指定行</el-button>
 			<el-button type="primary">编辑行</el-button>
@@ -66,7 +66,7 @@
 		},
 		methods: {
 			add: function(pos,data){
-				var new_data = {
+				var new_data = data || {
 					name: "daDing",
 					id: "4",
 					age: "18"
@@ -83,6 +83,7 @@
 					for( let item in this.bodys[i]){
 						if( this.bodys[i][item] == this.userInput ){
 							this.bodys[i][item] = `<span class="hight">${this.bodys[i][item]}</span>`
+							this.userInput = '';
 						}
 					}
 				}
