@@ -8,6 +8,10 @@
 # install dependencies
 npm install
 
+npm install babel-plugin-component -D
+
+npm install style-loader css-loader file-loader
+
 # serve with hot reload at localhost:8080
 npm run dev
 

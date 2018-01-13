@@ -34,6 +34,10 @@ export default {
 				{
 					path: '/grid',
 					name: 'grid'
+				},
+				{
+					path: '/elTable',
+					name: 'elTable'
 				}
 			]
 		}

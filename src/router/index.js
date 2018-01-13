@@ -5,6 +5,7 @@ import Slide from '../components/Slide'
 import Jump from '../components/Jump'
 import Select from '../components/select'
 import Grid from '../components/grid'
+import elTable from '../components/elTable'
 
 Vue.use(Router);
 Vue.config.productionTip = false;
@@ -35,6 +36,11 @@ export default new Router({
 			path: '/grid',
 			name: 'grid',
 			component: Grid
+		},
+		{
+			path: '/elTable',
+			name: 'elTable',
+			component: elTable
 		}
 
 	]

@@ -91,7 +91,7 @@
 		}
 	}
 </script>
-<style>
+<style scoped>
 	.hight {
 		color: red;
 	}
