@@ -38,6 +38,10 @@ export default {
 				{
 					path: '/elTable',
 					name: 'elTable'
+				},
+				{
+					path: '/edit',
+					name: 'edit'
 				}
 			]
 		}

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+    'use strict'
 export default {
 	name: 'slide',
 	data() {
