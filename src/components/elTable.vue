@@ -157,6 +157,24 @@
       },
       setChildGridData(row){
         this.childTableData = this.childGridData[row.id];
+      },
+      search(){
+        alert("看源码思路，已实现");
+        // 思路:1、仅限当前页查询
+        //           for当前页数据查找匹配数据，保留原来数据，重新set数据
+        //      2、全局查询
+        //           传给后端，set返回的数据
+        //      3、细节
+        //           选中高亮，处理数字包含的多种情况，已实现
+        if(this.userInput !== ""){
+          for( let m = 0; m < this.tableData4.length; m++){
+            for( let n in this.tableData4[m]){
+              if( this.tableData4[m][n] == this.userInput){
+                this.tableData4[m][n] = `span${ this.userInput }`;
+              }
+            }
+          }
+        }
       }
     },
     mounted:function(){
@@ -166,6 +184,7 @@
     },
     data() {
       return {
+        userInput:'',
         selectRow:[],
         checkRows:[],
         childTableData:[],
@@ -173,7 +192,7 @@
           id: 111,
           date: '2016-05-03',
           name: '王小虎',
-          province: '上海',
+          province: '北京',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
@@ -189,7 +208,7 @@
           id: 333,
           date: '2016-05-04',
           name: '王小虎',
-          province: '上海',
+          province: '河北',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
@@ -197,7 +216,7 @@
           id: 444,
           date: '2016-05-01',
           name: '王小虎',
-          province: '上海',
+          province: '山东',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
