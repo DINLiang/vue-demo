@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :span="14">
-        <el-button type="primary" @click="selectFun()">选中</el-button>
+        <el-button type="primary" @click="setSelectFun()">选中</el-button>
         <el-button type="primary" @click="getSelectFun()">获取选中</el-button>
         <el-button type="primary" @click="addFun()">增加行</el-button>
         <el-button type="primary" @click="addFun(2,keys)">指定行增加</el-button>
@@ -24,6 +24,8 @@
       ref="singleTable"
       highlight-current-row
      @current-change="handleCurrentChange"
+     @cell-click="onRowSelected"
+     @select="onCheckRows"
       style="width: 100%"
       show-summary="true"
       max-height="250">
@@ -34,6 +36,11 @@
       <el-table-column
       type="selection"
       width="55">
+      </el-table-column>
+      <el-table-column
+        prop="date"
+        label="日期"
+        width="120">
       </el-table-column>
       <el-table-column
         prop="province"
@@ -60,42 +67,84 @@
         label="邮编"
         width="120">
       </el-table-column>
-<!--       <el-table-column
+      <el-table-column
         fixed="right"
         label="操作"
         width="120">
         <template slot-scope="scope">
-            <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData4)"
-              type="text"
-              size="small">
-              移除
-            </el-button>
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, tableData4)"
+            type="text"
+            size="small">
+            移除
+          </el-button>
         </template>
       </el-table-column>
- -->    </el-table>
-  </div>  
-    
-    
-</template>
+    </el-table>
 
+    <el-table
+      :data="childTableData"
+      ref="singleTable"
+      highlight-current-row
+      style="width: 100%"
+      show-summary="true"
+      max-height="250">
+      <el-table-column
+        label="列数"
+        type="index">
+      </el-table-column>
+      <el-table-column
+      type="selection"
+      width="55">
+      </el-table-column>
+      <el-table-column
+        prop="id"
+        label="编号"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="姓名"
+        width="120">
+      </el-table-column>
+      <el-table-column
+        prop="age"
+        label="年龄"
+        width="120">
+      </el-table-column>
+    </el-table>
+  </div>  
+</template>
 <script>
   export default {
     methods: {
-      selectFun(){
+      setSelectFun(){
         this.$refs.singleTable.setCurrentRow(this.tableData4[1]);
       },
+      getSelectFun(){
+        alert(this.selectRow.name);
+      },
+      onCheckRows(selection, row){
+        this.checkRows = selection;
+      },
+      //用于子主表展示 check也会触发
+      onRowSelected(row, column, cell, event) {
+        //存储
+        this.selectRow = row;
+        this.setChildGridData(row);
+      },
       deleteFun(index) {
+        //思路：拿到数据id 传给后端 返回数据后 设置给tableData4
         let delIndex = index || 1;
-        let rows = this.tableData4;
-        rows.splice(delIndex, 1);
+        this.tableData4.splice(delIndex, 1);
       },
       editFun(){
-
+        this.$router.push({ name: 'edit', params: { selectRowId: this.selectRow.id }})
       },
       addFun(){
         for(var k = 0; k < 1200; k++){
           var data = {
+            id: 9999999,
             date: '2016-05-03',
             name: '王小虎',
             province: '上海',
@@ -105,11 +154,23 @@
           };
           this.tableData4.push(data);
         }
+      },
+      setChildGridData(row){
+        this.childTableData = this.childGridData[row.id];
       }
+    },
+    mounted:function(){
+      //思路: 1、页面初始化请求数据 
+            //2、编辑完成会提交到后端,跳回来
+            //3、赋值tableData4
     },
     data() {
       return {
+        selectRow:[],
+        checkRows:[],
+        childTableData:[],
         tableData4: [{
+          id: 111,
           date: '2016-05-03',
           name: '王小虎',
           province: '上海',
@@ -117,6 +178,7 @@
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
+          id: 222,
           date: '2016-05-02',
           name: '王小虎',
           province: '上海',
@@ -124,6 +186,7 @@
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
+          id: 333,
           date: '2016-05-04',
           name: '王小虎',
           province: '上海',
@@ -131,34 +194,60 @@
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
         }, {
+          id: 444,
           date: '2016-05-01',
           name: '王小虎',
           province: '上海',
           city: '普陀区',
           address: '上海市普陀区金沙江路 1518 弄',
           zip: 200333
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          province: '上海',
-          city: '普陀区',
-          address: '上海市普陀区金沙江路 1518 弄',
-          zip: 200333
-        }]
+        }],
+        childGridData:{
+          111 : [
+              {
+                "id": 11111111,
+                "name": "ding",
+                "age": 21
+              },{
+                "id": 11111111,
+                "name": "liu",
+                "age": 21
+              }
+          ],
+          222 : [
+              {
+                "id": 2222222,
+                "name": "yong",
+                "age": 22
+              },{
+                "id": 222222222,
+                "name": "yue",
+                "age": 22
+              }
+          ],
+          333 : [
+              {
+                "id": 333333,
+                "name": "liang",
+                "age": 23
+              },{
+                "id": 33333,
+                "name": "kai",
+                "age": 23
+              }
+          ],
+          444 : [
+              {
+                "id": 4444444,
+                "name": "cool",
+                "age": 24
+              },{
+                "id": 4444444,
+                "name": "cool",
+                "age": 24
+              }
+          ]       
+        }
       }
     }
   }
