@@ -44,14 +44,12 @@
   export default {
     methods: {
       submitForm(formName) {
-        console.log(formName);
-        console.log(this.$refs[formName]);
         this.$refs[formName].validate((valid) => {
           if (valid) {
             //思路：1、组装修改的数据
                   //2、数据传给后端 
                   //3、跳转回原来界面
-            alert('修改成功！');
+            alert('修改成功！请查看console');
             let edited_data = {
               date: this.ruleForm2.date,
               province: this.ruleForm2.province,
