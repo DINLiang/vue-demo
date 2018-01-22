@@ -158,6 +158,9 @@ import Axios from 'axios'
         this.selectRow = row;
         this.setChildGridData(row);
       },
+      deleteRow(index, rows) {
+        rows.splice(index, 1);
+      },
       deleteFun(index) {
         //思路：拿到数据id 传给后端 返回数据后 设置给tableData4
         let delIndex = index || 1;
