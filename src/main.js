@@ -4,6 +4,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router/index'
 import store from './store/index'
+require('./mock.js')
 
 // import 'bootstrap/dist/css/bootstrap.min.css'
 // import 'bootstrap'
