@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import RouteComponent from '../components/Router.vue'
 import Code from '../components/Code'
 import Slide from '../components/Slide'
 import Jump from '../components/Jump'
@@ -13,6 +14,11 @@ Vue.config.productionTip = false;
 
 export default new Router({
 	routes: [
+		{
+			path: '/',
+			name: '',
+			component: RouteComponent
+		},
 		{
 			path: '/code',
 			name: 'code',

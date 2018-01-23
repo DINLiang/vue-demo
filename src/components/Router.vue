@@ -1,9 +1,12 @@
 <template>
-	<ul>
-		<li v-for="i in conf">
-			<router-link :to="i.path" :name="i.name">{{ i.name }}</router-link> 
-		</li>
-	</ul>
+	<div>
+		<h1>欢迎来到VUE的世界</h1>
+		<ul>
+			<li v-for="i in conf">
+				<router-link :to="i.path" :name="i.name">{{ i.name }}</router-link> 
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script>

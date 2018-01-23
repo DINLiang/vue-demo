@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:100%">
     <el-row>
       <el-col :span="14">
         <el-button type="primary" @click="setSelectFun()">选中</el-button>
@@ -28,7 +28,7 @@
       :summary-method="getSummaries"
       show-summary
       style="width: 100%"
-      max-height="250">
+      max-height="500">
       <el-table-column
         label="列数"
         type="index">
@@ -44,23 +44,19 @@
       </el-table-column>
       <el-table-column
         prop="province"
-        label="省份"
-        width="120">
+        label="省份">
       </el-table-column>
       <el-table-column
         prop="name"
-        label="姓名"
-        width="120">
+        label="姓名">
       </el-table-column>
       <el-table-column
         prop="city"
-        label="市区"
-        width="120">
+        label="市区">
       </el-table-column>
       <el-table-column
         prop="address"
-        label="地址"
-        width="300">
+        label="地址">
       </el-table-column>
       <el-table-column
         prop="zip"
@@ -87,7 +83,7 @@
       ref="singleTable"
       highlight-current-row
       style="width: 100%"
-      max-height="250">
+      max-height="500">
       <el-table-column
         label="列数"
         type="index">
