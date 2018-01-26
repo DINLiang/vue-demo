@@ -83,7 +83,8 @@
       ref="singleTable"
       highlight-current-row
       style="width: 100%"
-      max-height="500">
+      max-height="500"
+      empty-text="没有数据的撒！">
       <el-table-column
         label="列数"
         type="index">
