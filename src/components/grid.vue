@@ -6,6 +6,7 @@
 			<el-button type="primary" @click="deleteFun">删除行</el-button>
 			<el-button type="primary" @click="deleteFun(2)">删除指定行</el-button>
 			<el-button type="primary">编辑行</el-button>
+			<el-button type="primary" @click="dealCommonJs">公共函数测试</el-button>
 			<el-row>
 			  <el-col :span="8"><el-input v-model="userInput" placeholder="请输入内容" ></el-input></el-col>
 			  <el-col :span="4"><el-button type="primary" @click="search">查询</el-button></el-col>
@@ -87,6 +88,9 @@
 						}
 					}
 				}
+			},
+			dealCommonJs() {
+				this.changeData("成功喽！");
 			}
 		}
 	}
