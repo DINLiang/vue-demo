@@ -14,6 +14,35 @@ require('./mock/mock.js')
 
 Vue.use(base);
 
+Vue.component('custom-input', {
+    props: ['value'],
+    template: `
+      <input
+        v-bind:value="value"
+        v-on:input="$emit('input', $event.target.value)"
+      >
+    `,
+    methods() {
+
+    }
+  })
+
+  Vue.component('custom-input1', {
+    props: ['value'],
+    template: `
+    <div>
+      <input
+        v-bind:value="value"
+        v-on:input="$emit('input', $event.target.value)"
+      >
+      <p>{{ value }}</p>
+      </div>
+    `,
+    methods() {
+        
+    }
+  })
+
 
 Vue.use(ElementUI, { size: 'small' })
 
